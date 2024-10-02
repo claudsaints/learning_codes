@@ -11,23 +11,16 @@
 class ProgressaoGeo{
     primeiro_termo: number;
     razao: number;
-
     constructor(primeiro:number,constante:number){
         this.primeiro_termo = primeiro;
         this.razao = constante;
-    }
-    calcularTermoRecursivo(n:number, termos:number[] = []):number[]{
-        if(n === 0){
-            return termos;
-        }
-        const proximoTermo = this.primeiro_termo * Math.pow(this.razao,termos.length);
-
-        termos.push(proximoTermo);
-
-        return this.calcularTermoRecursivo(n - 1)
-    }
-    calcularTermos(termos:number[] = [this.primeiro_termo]):number[]{
+    }calcularTermos(termos:number[] = [this.primeiro_termo]):number[]{
         // posição 'futura' a ser adicionada
+        //caso razão seja = 0 não vai calcular
+        if(this.razao === 0){
+            return [0];
+        }
+
         let c = 1;
         for(let i = 0; i < 50; i++){
             termos[c] = this.razao * termos[i];
@@ -35,7 +28,6 @@ class ProgressaoGeo{
         }
         return termos;
     }
-
 }
 
 const nova_prog =  new ProgressaoGeo(1 , 2);
